@@ -21,6 +21,8 @@ Configs](https://github.com/h5bp/server-configs-nginx).
 
 ## Setup
 
+Require nginx-1.11.8 or newer.
+
 1. Replace contents of your `/etc/nginx/` with files from this repo.
 2. Use files in `sites-available/` as templates for your websites.
 3. Make symlinks in `sites-enabled/` to `../sites-available/SOME_CONFIG`.
