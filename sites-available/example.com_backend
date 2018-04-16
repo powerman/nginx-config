@@ -1,0 +1,28 @@
+server {
+	listen 80;
+
+	server_name example.com www.example.com;
+
+	include conf.d/opt/www_redirect.conf;
+	include conf.d/opt/aws_force_https.conf;
+
+	include conf.d/opt/aws_proxy.conf;
+
+	# include conf.d/opt/tcp_latency.conf;
+	### OR
+	# include conf.d/opt/tcp_throughput.conf;
+
+	root /var/www/$server_name;
+
+	expires $expires;
+
+	include conf.d/opt/protect_system_files.conf;
+	include conf.d/opt/cache_busting.conf;
+
+	location /service/ {
+		# include conf.d/proxy.conf;
+		# proxy_set_header ...;
+		set $backend    "http://service:8000";
+		proxy_pass      $backend;
+	}
+}
